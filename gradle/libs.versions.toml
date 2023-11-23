@@ -27,6 +27,8 @@ spekDsl = { module = "org.spekframework.spek2:spek-dsl-jvm", version.ref = "spek
 spekRunner = { module = "org.spekframework.spek2:spek-runner-junit5", version.ref = "spek" }
 junitEngine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
 junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.7.3" }
+
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.0" }
