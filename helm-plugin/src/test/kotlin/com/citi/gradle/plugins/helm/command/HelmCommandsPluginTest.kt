@@ -26,9 +26,7 @@ object HelmCommandsPluginTest : Spek({
 
 
         it("project can be evaluated successfully") {
-            assertThat {
-                project.evaluate()
-            }.isSuccess()
+            project.evaluate()
         }
 
 

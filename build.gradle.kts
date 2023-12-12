@@ -95,7 +95,7 @@ subprojects {
     plugins.withId("org.jetbrains.dokka") {
 
         dependencies {
-            "dokkaJavadocPlugin"("org.jetbrains.dokka:kotlin-as-java-plugin:$embeddedKotlinVersion")
+            "dokkaJavadocPlugin"("org.jetbrains.dokka:kotlin-as-java-plugin:${libs.versions.dokka.get()}")
         }
 
         // have an option to disable Dokka task for local builds
