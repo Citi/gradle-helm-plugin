@@ -6,7 +6,7 @@ okhttp = "4.12.0"
 jackson = "2.17.2"
 # No need to keep the same Kotlin version with Gradle, at least because kotlin runtime is a transitive dependency of okhttp
 kotlin = "1.9.23"
-junit = "5.10.3"
+junit = "5.11.0"
 
 [libraries]
 snakeyaml = "org.yaml:snakeyaml:2.2"
