@@ -33,7 +33,7 @@ coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ver
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.6" }
-gradlePublish = { id = "com.gradle.plugin-publish", version = "1.2.1" }
+gradlePublish = { id = "com.gradle.plugin-publish", version = "1.2.2" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 asciidoctor = { id = "org.asciidoctor.jvm.convert", version = "4.0.3" }
