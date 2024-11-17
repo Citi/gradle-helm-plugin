@@ -19,6 +19,8 @@ internal interface HelmExecWorkParameters : WorkParameters {
     val ignoreExitValue: Property<Boolean>
 
     val stdoutFile: RegularFileProperty
+
+    val suppressEnvironmentLogging: Property<Boolean>
 }
 
 
@@ -48,5 +50,9 @@ internal class WorkParametersHelmExecSpec(
 
     override fun assertSuccess(assertSuccess: Boolean) {
         params.ignoreExitValue.set(!assertSuccess)
+    }
+
+    override fun suppressEnvironmentLogging(suppress: Boolean) {
+        params.suppressEnvironmentLogging.set(suppress);
     }
 }

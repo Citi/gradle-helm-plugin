@@ -92,6 +92,12 @@ object GlobalOptionsTests : AbstractOptionsTests({
         }
     }
 
+    variant("with suppress environment logging flag") {
+        beforeEachTest {
+            project.helm.suppressEnvironmentLogging.set(true)
+        }
+    }
+
 
     variant("with extra args") {
 

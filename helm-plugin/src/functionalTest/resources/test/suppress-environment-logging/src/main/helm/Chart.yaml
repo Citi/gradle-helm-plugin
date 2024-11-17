@@ -1,0 +1,6 @@
+apiVersion: v2
+name: dummy
+description: A dummy helm chart
+version: 0.0.1
+appVersion: "0.0.1"
+type: application
