@@ -16,6 +16,7 @@ fun ConfigurableGlobalHelmOptions.conventionsFrom(source: GlobalHelmOptions) = a
     xdgDataHome.convention(source.xdgDataHome)
     xdgConfigHome.convention(source.xdgConfigHome)
     xdgCacheHome.convention(source.xdgCacheHome)
+    suppressEnvironmentLogging.convention(source.suppressEnvironmentLogging)
 }
 
 
@@ -40,6 +41,9 @@ class DelegateGlobalHelmOptions(
 
     override val xdgCacheHome: Provider<Directory>
         get() = provider.flatMap { it.xdgCacheHome }
+
+    override val suppressEnvironmentLogging: Provider<Boolean>
+        get() = provider.flatMap { it.suppressEnvironmentLogging }
 }
 
 
@@ -65,6 +69,8 @@ object GlobalHelmOptionsApplier : HelmOptionsApplier {
                 environment("XDG_DATA_HOME", options.xdgDataHome)
                 environment("XDG_CONFIG_HOME", options.xdgConfigHome)
                 environment("XDG_CACHE_HOME", options.xdgCacheHome)
+
+                suppressEnvironmentLogging(options.suppressEnvironmentLogging.getOrElse(false))
             }
         }
     }
