@@ -74,6 +74,10 @@ number of seconds (e.g. `210`).
   Defaults to `$rootDir/.gradle/helm/cache`.
 | icon:check[]
 
+| `helm.suppressEnvironmentLogging`
+| If true, do not log the gradle environment at Info level.
+|
+
 |===
 
 

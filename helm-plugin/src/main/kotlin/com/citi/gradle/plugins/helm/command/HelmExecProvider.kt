@@ -136,10 +136,13 @@ internal class HelmExecProviderSupport(
         action: Action<HelmExecSpec>?, withExecSpec: (ExecSpec.() -> Unit)? = null
     ) = project.exec { execSpec ->
 
-        val helmExecSpec = DefaultHelmExecSpec(execSpec, command, subcommand)
+        val helmExecSpec = DefaultHelmExecSpec(execSpec, command, subcommand, false)
         withExecSpec?.invoke(execSpec)
         applyOptions(helmExecSpec)
         action?.execute(helmExecSpec)
+
+        // execHelmSync has never logged the environment so the default behavior is maintained
+        // and helmExecSpec.suppressEnvironmentLogging remains unused
 
         if (logger.isInfoEnabled) {
             logger.info("Executing: {}", maskCommandLine(execSpec.commandLine))

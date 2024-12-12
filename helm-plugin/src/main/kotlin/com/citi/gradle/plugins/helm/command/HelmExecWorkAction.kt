@@ -30,7 +30,12 @@ internal abstract class HelmExecWorkAction
                 stdout?.let { spec.standardOutput = it }
 
                 if (logger.isInfoEnabled) {
-                    logger.info("Executing: {}\n  with environment: {}", maskCommandLine(spec.commandLine), spec.environment)
+                    if (parameters.suppressEnvironmentLogging.get()) {
+                        logger.info("Executing: {}\n  (environment logging is suppressed)", maskCommandLine(spec.commandLine))
+                    }
+                    else {
+                        logger.info("Executing: {}\n  with environment: {}", maskCommandLine(spec.commandLine), spec.environment)
+                    }
                 }
             }
         }
