@@ -14,7 +14,7 @@ assertk = "com.willowtreeapps.assertk:assertk-jvm:0.28.1"
 # version 1.13.8 doesn't work because of JVM 11 bytecode despite of https://github.com/mockk/mockk/pull/1161
 mockk = "io.mockk:mockk:1.13.13"
 tabbedCodeExtension = "com.bmuschko:asciidoctorj-tabbed-code-extension:0.3"
-orgJson = "org.json:json:20240303"
+orgJson = "org.json:json:20241224"
 jsonPath = "com.jayway.jsonpath:json-path:2.9.0"
 kotestAssertions = "io.kotest:kotest-assertions-core:5.9.1"
 jacksonDataBind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
