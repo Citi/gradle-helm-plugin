@@ -144,6 +144,12 @@ interface HelmExecSpec {
      * a non-zero exit code.
      */
     fun assertSuccess(assertSuccess: Boolean = true)
+
+    /**
+     * If false (the default), the contents of the process environment will be dumped to the logs
+     * when the helm command is launched by the gradle daemon.
+     */
+    fun suppressEnvironmentLogging(suppress: Boolean = false)
 }
 
 
@@ -153,7 +159,8 @@ interface HelmExecSpec {
 internal class DefaultHelmExecSpec(
     private val execSpec: ExecSpec,
     command: String,
-    subcommand: String?
+    subcommand: String?,
+    var suppressEnvironmentLogging: Boolean
 ) : HelmExecSpec {
 
     init {
@@ -181,5 +188,9 @@ internal class DefaultHelmExecSpec(
 
     override fun assertSuccess(assertSuccess: Boolean) {
         execSpec.isIgnoreExitValue = !assertSuccess
+    }
+
+    override fun suppressEnvironmentLogging(suppress: Boolean) {
+        suppressEnvironmentLogging = suppress;
     }
 }
