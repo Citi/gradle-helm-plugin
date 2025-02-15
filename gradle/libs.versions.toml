@@ -9,7 +9,7 @@ kotlin = "1.9.23"
 junit = "5.11.4"
 
 [libraries]
-snakeyaml = "org.yaml:snakeyaml:2.3"
+snakeyaml = "org.yaml:snakeyaml:2.4"
 assertk = "com.willowtreeapps.assertk:assertk-jvm:0.28.1"
 # version 1.13.8 doesn't work because of JVM 11 bytecode despite of https://github.com/mockk/mockk/pull/1161
 mockk = "io.mockk:mockk:1.13.13"
