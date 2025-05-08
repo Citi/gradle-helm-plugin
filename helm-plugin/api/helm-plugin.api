@@ -25,6 +25,7 @@ public abstract interface class com/citi/gradle/plugins/helm/command/Configurabl
 	public abstract fun getDebug ()Lorg/gradle/api/provider/Property;
 	public abstract fun getExecutable ()Lorg/gradle/api/provider/Property;
 	public abstract fun getExtraArgs ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getSuppressEnvironmentLogging ()Lorg/gradle/api/provider/Property;
 	public abstract fun getXdgCacheHome ()Lorg/gradle/api/file/DirectoryProperty;
 	public abstract fun getXdgConfigHome ()Lorg/gradle/api/file/DirectoryProperty;
 	public abstract fun getXdgDataHome ()Lorg/gradle/api/file/DirectoryProperty;
@@ -74,6 +75,7 @@ public abstract interface class com/citi/gradle/plugins/helm/command/GlobalHelmO
 	public abstract fun getDebug ()Lorg/gradle/api/provider/Provider;
 	public abstract fun getExecutable ()Lorg/gradle/api/provider/Provider;
 	public abstract fun getExtraArgs ()Lorg/gradle/api/provider/Provider;
+	public abstract fun getSuppressEnvironmentLogging ()Lorg/gradle/api/provider/Provider;
 	public abstract fun getXdgCacheHome ()Lorg/gradle/api/provider/Provider;
 	public abstract fun getXdgConfigHome ()Lorg/gradle/api/provider/Provider;
 	public abstract fun getXdgDataHome ()Lorg/gradle/api/provider/Provider;
@@ -111,6 +113,7 @@ public abstract interface class com/citi/gradle/plugins/helm/command/HelmExecSpe
 	public abstract fun flag (Ljava/lang/String;ZZ)V
 	public abstract fun option (Ljava/lang/String;Ljava/lang/Object;)V
 	public abstract fun option (Ljava/lang/String;Lorg/gradle/api/provider/Provider;)V
+	public abstract fun suppressEnvironmentLogging (Z)V
 }
 
 public final class com/citi/gradle/plugins/helm/command/HelmExecSpec$DefaultImpls {
@@ -123,6 +126,7 @@ public final class com/citi/gradle/plugins/helm/command/HelmExecSpec$DefaultImpl
 	public static synthetic fun flag$default (Lcom/citi/gradle/plugins/helm/command/HelmExecSpec;Ljava/lang/String;ZZILjava/lang/Object;)V
 	public static fun option (Lcom/citi/gradle/plugins/helm/command/HelmExecSpec;Ljava/lang/String;Ljava/lang/Object;)V
 	public static fun option (Lcom/citi/gradle/plugins/helm/command/HelmExecSpec;Ljava/lang/String;Lorg/gradle/api/provider/Provider;)V
+	public static synthetic fun suppressEnvironmentLogging$default (Lcom/citi/gradle/plugins/helm/command/HelmExecSpec;ZILjava/lang/Object;)V
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/command/HelmInstallFromRepositoryOptions : com/citi/gradle/plugins/helm/command/HelmInstallationOptions {
@@ -170,6 +174,7 @@ public final class com/citi/gradle/plugins/helm/command/internal/DelegateGlobalH
 	public fun getDebug ()Lorg/gradle/api/provider/Provider;
 	public fun getExecutable ()Lorg/gradle/api/provider/Provider;
 	public fun getExtraArgs ()Lorg/gradle/api/provider/Provider;
+	public fun getSuppressEnvironmentLogging ()Lorg/gradle/api/provider/Provider;
 	public fun getXdgCacheHome ()Lorg/gradle/api/provider/Provider;
 	public fun getXdgConfigHome ()Lorg/gradle/api/provider/Provider;
 	public fun getXdgDataHome ()Lorg/gradle/api/provider/Provider;
@@ -412,6 +417,7 @@ public abstract class com/citi/gradle/plugins/helm/command/tasks/AbstractHelmCom
 	protected final fun getRegistryConfigFile ()Lorg/gradle/api/provider/Provider;
 	protected final fun getRepositoryCacheDir ()Lorg/gradle/api/provider/Provider;
 	protected final fun getRepositoryConfigFile ()Lorg/gradle/api/provider/Provider;
+	public final fun getSuppressEnvironmentLogging ()Lorg/gradle/api/provider/Provider;
 	public final fun getXdgCacheHome ()Lorg/gradle/api/provider/Provider;
 	public final fun getXdgConfigHome ()Lorg/gradle/api/provider/Provider;
 	public final fun getXdgDataHome ()Lorg/gradle/api/provider/Provider;

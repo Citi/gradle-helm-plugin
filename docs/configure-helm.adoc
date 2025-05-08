@@ -45,6 +45,10 @@ The following properties can be set on the `helm` extension in the Gradle build 
 | `remoteTimeout`
 | Time to wait for any individual Kubernetes operation (like Jobs for hooks).
 | `--timeout` (on certain commands like `install`, `upgrade` or `uninstall`)
+
+| `suppressEnvironmentLogging`
+| If true, do not log the gradle process environment at Info level. The default is false.
+|
 |===
 
 [NOTE]

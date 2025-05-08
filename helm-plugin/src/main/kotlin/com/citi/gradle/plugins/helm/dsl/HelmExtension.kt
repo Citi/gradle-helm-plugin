@@ -147,6 +147,9 @@ private open class DefaultHelmExtension
                 )
             )
 
+    final override val suppressEnvironmentLogging: Property<Boolean> =
+        objects.property<Boolean>()
+            .convention(project.booleanProviderFromProjectProperty("helm.suppressEnvironmentLogging"))
 
     final override val xdgCacheHome: DirectoryProperty =
         objects.directoryProperty()

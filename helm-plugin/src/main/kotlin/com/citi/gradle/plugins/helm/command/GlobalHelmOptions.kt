@@ -20,6 +20,8 @@ interface GlobalHelmOptions : HelmOptions {
     val xdgConfigHome: Provider<Directory>
 
     val xdgCacheHome: Provider<Directory>
+
+    val suppressEnvironmentLogging: Provider<Boolean>
 }
 
 
@@ -75,4 +77,11 @@ interface ConfigurableGlobalHelmOptions : GlobalHelmOptions, ConfigurableHelmOpt
      * See [https://helm.sh/docs/helm/helm/] for details about how XDG base directories are used by the Helm CLI.
      */
     override val xdgCacheHome: DirectoryProperty
+
+    /**
+     * Indicates whether to suppress logging of the environment when a helm command is executed. When running
+     * in a containerized system the process environment often contains credentials, keys and other such
+     * confidential information that should not be logged.
+     */
+    override val suppressEnvironmentLogging: Property<Boolean>
 }

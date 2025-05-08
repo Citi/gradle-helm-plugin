@@ -84,6 +84,10 @@ abstract class AbstractHelmCommandTask
 
 
     @get:Internal
+    final override val suppressEnvironmentLogging: Provider<Boolean>
+        get() = globalOptions.flatMap { it.suppressEnvironmentLogging }
+
+    @get:Internal
     protected val registryConfigFile: Provider<RegularFile>
         get() = xdgConfigHome.map { it.file("helm/registry.json") }
 

@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.binaryCompatibilityValidator)
 }
 
+val functionalTest by sourceSets.creating
 
 dependencies {
 
@@ -26,10 +27,13 @@ dependencies {
     testImplementation(libs.unbrokenDomeTestUtils)
     testImplementation(libs.bundles.defaultTests)
     testRuntimeOnly(libs.junitEngine)
+
+    "functionalTestImplementation"(project(":plugin-test-utils"))
 }
 
 
 gradlePlugin {
+    testSourceSets(functionalTest)
     plugins {
         create("helmCommandsPlugin") {
             id = "com.citi.helm-commands"
@@ -50,4 +54,21 @@ gradlePlugin {
 
 apiValidation {
     ignoredPackages.add("com.citi.gradle.plugins.helm.dsl.internal")
+}
+
+val functionalTestTask = tasks.register<Test>("functionalTest") {
+    description = "Runs the integration tests."
+    group = "verification"
+    testClassesDirs = functionalTest.output.classesDirs
+    classpath = functionalTest.runtimeClasspath
+    mustRunAfter(tasks.test)
+
+    val urlOverrideProperty = "com.citi.gradle.helm.plugin.distribution.url.prefix"
+    findProperty(urlOverrideProperty)?.let { urlOverride ->
+        systemProperty(urlOverrideProperty, urlOverride)
+    }
+}
+
+tasks.build {
+    dependsOn(functionalTestTask)
 }
