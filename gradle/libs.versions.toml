@@ -38,7 +38,7 @@ dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 asciidoctor = { id = "org.asciidoctor.jvm.convert", version = "4.0.4" }
 benManesVersions = { id = "com.github.ben-manes.versions", version = "0.51.0" }
-binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.16.0" }
+binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.17.0" }
 
 [bundles]
 defaultTests = ["junit", "kotestAssertions"]
