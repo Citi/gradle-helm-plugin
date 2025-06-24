@@ -160,6 +160,7 @@ class HelmReleasesPlugin : Plugin<Project> {
                     releaseTarget.dryRun.convention(dryRun)
                     releaseTarget.noHooks.convention(noHooks)
                     releaseTarget.remoteTimeout.convention(remoteTimeout)
+                    releaseTarget.skipCrds.convention(skipCrds)
                     releaseTarget.wait.convention(wait)
                     releaseTarget.waitForJobs.convention(waitForJobs)
                 }
