@@ -20,6 +20,8 @@
 
 <br />
 
+## Important: please check issue [Deprecation Notice: Citi Ending Active Maintenance](https://github.com/Citi/gradle-helm-plugin/issues/128)
+
 ## Features
 
 - Gradle task types for common Helm CLI commands
