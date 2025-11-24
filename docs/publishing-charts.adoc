@@ -102,6 +102,8 @@ helm {
         repositories {
             artifactory {
                 url = uri('http://artifactory.example.com/helm-local')
+                // uploadPath is optional and defaults to '/{chartName}-{chartVersion}.tgz'
+                uploadPath = '/charts/{name}/{version}/{filename}'
             }
         }
     }
@@ -116,11 +118,19 @@ helm {
         repositories {
             artifactory {
                 url.set(uri("http://artifactory.example.com/helm-local"))
+                // uploadPath is optional and defaults to '/{chartName}-{chartVersion}.tgz'
+                uploadPath.set("/charts/{name}/{version}/{filename}")
             }
         }
     }
 }
 ----
+
+The following placeholders can be used in the `uploadPath` property:
+
+- `{name}` will be replaced with the chart name
+- `{version}` will be replaced with the chart version
+- `{filename}` will be replaced with the file name of the packaged chart, i.e. `{name}-{version}.tgz`
 
 == Repository Types
 
