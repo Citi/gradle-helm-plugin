@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory
 import com.citi.gradle.plugins.helm.dsl.credentials.internal.SerializableCertificateCredentials
 import com.citi.gradle.plugins.helm.dsl.credentials.internal.SerializableCredentials
 import com.citi.gradle.plugins.helm.dsl.credentials.internal.SerializablePasswordCredentials
+import okhttp3.Headers.Companion.toHeaders
 import java.io.File
 import java.net.URI
 
@@ -75,6 +76,7 @@ internal abstract class AbstractHttpHelmChartPublisher(
 
         val request = Request.Builder().run {
             url(uploadUrl.toHttpUrl())
+            headers(additionalHeaders(chartName, chartVersion, chartFile).toHeaders())
             method(uploadMethod, requestBody(chartFile))
             build()
         }
