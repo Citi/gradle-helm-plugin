@@ -9,6 +9,7 @@ public final class com/citi/gradle/plugins/helm/publishing/HelmPublishPluginCons
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository : com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository {
+	public abstract fun getUploadPath ()Lorg/gradle/api/provider/Property;
 }
 
 public final class com/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository$DefaultImpls {
