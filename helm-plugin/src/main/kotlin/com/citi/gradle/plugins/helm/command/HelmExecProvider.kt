@@ -134,7 +134,7 @@ internal class HelmExecProviderSupport(
     private fun execHelmSync(
         command: String, subcommand: String?,
         action: Action<HelmExecSpec>?, withExecSpec: (ExecSpec.() -> Unit)? = null
-    ) = project.exec { execSpec ->
+    ) = project.providers.exec { execSpec ->
 
         val helmExecSpec = DefaultHelmExecSpec(execSpec, command, subcommand)
         withExecSpec?.invoke(execSpec)
@@ -144,7 +144,7 @@ internal class HelmExecProviderSupport(
         if (logger.isInfoEnabled) {
             logger.info("Executing: {}", maskCommandLine(execSpec.commandLine))
         }
-    }
+    }.result.get()
 
 
     private fun execHelmInWorker(

@@ -1,16 +1,9 @@
 package com.citi.gradle.plugins.helm.dsl.credentials
 
-import com.citi.gradle.plugins.helm.dsl.credentials.internal.toAction
-import groovy.lang.Closure
-import groovy.lang.Closure.DELEGATE_FIRST
-import groovy.lang.DelegatesTo
 import org.gradle.api.Action
 import org.gradle.api.credentials.Credentials
 import org.gradle.api.provider.Provider
 import kotlin.reflect.KClass
-
-private const val deprecationMessage = "The function is deprecated: Gradle doesn't recommend to pass `Closure<*>` as input parameter. " +
-        "Nothing needs to be changed for Groovy users, please use overloaded method in Java/Kotlin"
 
 /**
  * Holds credentials to access a remote service.
@@ -81,46 +74,6 @@ interface CredentialsContainer {
 
 
     /**
-     * Configures the credentials for this service using the supplied closure.
-     *
-     * If no credentials have been assigned to this repository, an empty set of credentials of the specified type will
-     * be assigned to this repository and given to the configuration action.
-     *
-     * If credentials have already been specified for this repository, they will be passed to the given
-     * configuration action.
-     *
-     * ```
-     * credentials(CertificateCredentials) {
-     *     certificateFile file("/path/to/certificate")
-     *     keyFile file("/path/to/key")
-     * }
-     * ```
-     *
-     * The following credential types are currently supported for the `type` argument:
-     *
-     * * [PasswordCredentials]
-     * * [CertificateCredentials]
-     *
-     * @param type the type of credentials
-     * @param configClosure a [Closure] to configure the credentials
-     *
-     * @throws IllegalArgumentException if `type` is not of a supported type
-     * @throws IllegalArgumentException if `type` is of a different type to the credentials previously
-     *         specified for this repository
-     */
-    @Deprecated(
-        message = deprecationMessage,
-        replaceWith = ReplaceWith("credentials")
-    )
-    fun <T : Credentials> credentials(
-        @DelegatesTo.Target type: Class<T>,
-        @DelegatesTo(strategy = DELEGATE_FIRST, genericTypeIndex = 0) configClosure: Closure<*>
-    ) {
-        credentials(type, configClosure.toAction())
-    }
-
-
-    /**
      * Configures the username/password credentials for this service using the supplied action.
      *
      * If no credentials have been assigned to this repository, an empty set of username/password credentials is
@@ -139,35 +92,6 @@ interface CredentialsContainer {
      *         type [PasswordCredentials]
      */
     fun credentials(configAction: Action<in PasswordCredentials>)
-
-
-    /**
-     * Configures the username/password credentials for this service using the supplied closure.
-     *
-     * If no credentials have been assigned to this repository, an empty set of username/password credentials is
-     * assigned to this repository and passed to the action.
-     *
-     * ```
-     * credentials {
-     *     username = 'joe'
-     *     password = 'secret'
-     * }
-     * ```
-     *
-     * @param configClosure a [Closure] to configure the credentials
-     *
-     * @throws IllegalStateException when the credentials assigned to this service are not of
-     *         type [PasswordCredentials]
-     */
-    @Deprecated(
-        message = deprecationMessage,
-        replaceWith = ReplaceWith("credentials")
-    )
-    fun credentials(
-        @DelegatesTo(PasswordCredentials::class, strategy = DELEGATE_FIRST) configClosure: Closure<*>
-    ) {
-        credentials(configClosure.toAction())
-    }
 
 
     /**

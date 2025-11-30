@@ -7,7 +7,7 @@ import org.gradle.api.tasks.TaskDependency
 import com.citi.gradle.plugins.helm.HELM_GROUP
 import com.citi.gradle.plugins.helm.dsl.HelmChart
 import com.citi.gradle.plugins.helm.publishing.dsl.HelmPublishingRepository
-import com.citi.gradle.plugins.helm.publishing.dsl.publishConvention
+import com.citi.gradle.plugins.helm.publishing.dsl.publishExtension
 import com.citi.gradle.plugins.helm.rules.AbstractHelmChartTaskRule
 import org.unbrokendome.gradle.pluginutils.rules.RuleNamePattern
 
@@ -35,7 +35,7 @@ internal class HelmPublishChartTaskRule(
     override fun Task.configureFrom(chart: HelmChart) {
         group = HELM_GROUP
         description = "Publishes the ${chart.name} chart."
-        onlyIf { chart.publishConvention.publish.get() }
+        onlyIf { chart.publishExtension.publish.get() }
 
         dependsOn(TaskDependency {
             repositories.map { repository ->

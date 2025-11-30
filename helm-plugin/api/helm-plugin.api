@@ -87,7 +87,9 @@ public final class com/citi/gradle/plugins/helm/command/HelmCommandsPlugin : org
 
 public abstract interface class com/citi/gradle/plugins/helm/command/HelmExecProvider {
 	public abstract fun execHelm (Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public static synthetic fun execHelm$default (Lcom/citi/gradle/plugins/helm/command/HelmExecProvider;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public abstract fun execHelmCaptureOutput (Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;)Ljava/lang/String;
+	public static synthetic fun execHelmCaptureOutput$default (Lcom/citi/gradle/plugins/helm/command/HelmExecProvider;Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Ljava/lang/String;
 }
 
 public final class com/citi/gradle/plugins/helm/command/HelmExecProvider$DefaultImpls {
@@ -102,15 +104,18 @@ public final class com/citi/gradle/plugins/helm/command/HelmExecProviderKt {
 
 public abstract interface class com/citi/gradle/plugins/helm/command/HelmExecSpec {
 	public abstract fun args (Ljava/lang/Iterable;)V
-	public abstract fun args (Lorg/gradle/api/provider/Provider;)V
-	public abstract fun args ([Ljava/lang/Object;)V
+	public fun args (Lorg/gradle/api/provider/Provider;)V
+	public fun args ([Ljava/lang/Object;)V
 	public abstract fun assertSuccess (Z)V
+	public static synthetic fun assertSuccess$default (Lcom/citi/gradle/plugins/helm/command/HelmExecSpec;ZILjava/lang/Object;)V
 	public abstract fun environment (Ljava/lang/String;Lorg/gradle/api/provider/Provider;)V
 	public abstract fun executable (Ljava/lang/String;)V
-	public abstract fun flag (Ljava/lang/String;Lorg/gradle/api/provider/Provider;Z)V
-	public abstract fun flag (Ljava/lang/String;ZZ)V
-	public abstract fun option (Ljava/lang/String;Ljava/lang/Object;)V
-	public abstract fun option (Ljava/lang/String;Lorg/gradle/api/provider/Provider;)V
+	public fun flag (Ljava/lang/String;Lorg/gradle/api/provider/Provider;Z)V
+	public fun flag (Ljava/lang/String;ZZ)V
+	public static synthetic fun flag$default (Lcom/citi/gradle/plugins/helm/command/HelmExecSpec;Ljava/lang/String;Lorg/gradle/api/provider/Provider;ZILjava/lang/Object;)V
+	public static synthetic fun flag$default (Lcom/citi/gradle/plugins/helm/command/HelmExecSpec;Ljava/lang/String;ZZILjava/lang/Object;)V
+	public fun option (Ljava/lang/String;Ljava/lang/Object;)V
+	public fun option (Ljava/lang/String;Lorg/gradle/api/provider/Provider;)V
 }
 
 public final class com/citi/gradle/plugins/helm/command/HelmExecSpec$DefaultImpls {
@@ -644,20 +649,20 @@ public final class com/citi/gradle/plugins/helm/dsl/Filtering$Companion {
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/dsl/HelmChart : org/gradle/api/Buildable, org/gradle/api/Named {
-	public abstract fun extraFiles (Lorg/gradle/api/Action;)V
+	public fun extraFiles (Lorg/gradle/api/Action;)V
 	public abstract fun getBaseOutputDir ()Lorg/gradle/api/file/DirectoryProperty;
 	public abstract fun getChartName ()Lorg/gradle/api/provider/Property;
 	public abstract fun getChartVersion ()Lorg/gradle/api/provider/Property;
 	public abstract fun getExtraFiles ()Lorg/gradle/api/file/CopySpec;
-	public abstract fun getOutputDir ()Lorg/gradle/api/provider/Provider;
+	public fun getOutputDir ()Lorg/gradle/api/provider/Provider;
 	public abstract fun getOverrideChartInfo ()Lorg/gradle/api/provider/Property;
 	public abstract fun getPackageFile ()Lorg/gradle/api/provider/Provider;
-	public abstract fun getPackageFileName ()Lorg/gradle/api/provider/Provider;
-	public abstract fun getPackageOutputFile ()Lorg/gradle/api/provider/Provider;
+	public fun getPackageFileName ()Lorg/gradle/api/provider/Provider;
+	public fun getPackageOutputFile ()Lorg/gradle/api/provider/Provider;
 	public abstract fun getRenderBaseOutputDir ()Lorg/gradle/api/file/DirectoryProperty;
 	public abstract fun getRenderings ()Lorg/gradle/api/NamedDomainObjectContainer;
 	public abstract fun getSourceDir ()Lorg/gradle/api/file/DirectoryProperty;
-	public abstract fun renderings (Lorg/gradle/api/Action;)V
+	public fun renderings (Lorg/gradle/api/Action;)V
 }
 
 public final class com/citi/gradle/plugins/helm/dsl/HelmChart$DefaultImpls {
@@ -680,7 +685,7 @@ public final class com/citi/gradle/plugins/helm/dsl/HelmDownloadClient$Companion
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/dsl/HelmExtension : com/citi/gradle/plugins/helm/command/ConfigurableGlobalHelmOptions, com/citi/gradle/plugins/helm/command/ConfigurableHelmServerOptions, com/citi/gradle/plugins/helm/command/HelmExecProvider {
-	public abstract fun downloadClient (Lorg/gradle/api/Action;)V
+	public fun downloadClient (Lorg/gradle/api/Action;)V
 	public abstract fun getDownloadClient ()Lcom/citi/gradle/plugins/helm/dsl/HelmDownloadClient;
 	public abstract fun getOutputDir ()Lorg/gradle/api/file/DirectoryProperty;
 	public abstract fun getRenderOutputDir ()Lorg/gradle/api/file/DirectoryProperty;
@@ -712,15 +717,13 @@ public abstract interface class com/citi/gradle/plugins/helm/dsl/HelmRepository 
 	public abstract fun url (Ljava/lang/Object;)V
 }
 
-public final class com/citi/gradle/plugins/helm/dsl/HelmRepository$DefaultImpls {
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/dsl/HelmRepository;Lgroovy/lang/Closure;)V
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/dsl/HelmRepository;Ljava/lang/Class;Lgroovy/lang/Closure;)V
-}
-
 public abstract interface class com/citi/gradle/plugins/helm/dsl/HelmRepositoryHandler : org/gradle/api/NamedDomainObjectContainer {
-	public abstract fun bitnami (Ljava/lang/String;)V
-	public abstract fun helmIncubator (Ljava/lang/String;)V
-	public abstract fun helmStable (Ljava/lang/String;)V
+	public fun bitnami (Ljava/lang/String;)V
+	public static synthetic fun bitnami$default (Lcom/citi/gradle/plugins/helm/dsl/HelmRepositoryHandler;Ljava/lang/String;ILjava/lang/Object;)V
+	public fun helmIncubator (Ljava/lang/String;)V
+	public static synthetic fun helmIncubator$default (Lcom/citi/gradle/plugins/helm/dsl/HelmRepositoryHandler;Ljava/lang/String;ILjava/lang/Object;)V
+	public fun helmStable (Ljava/lang/String;)V
+	public static synthetic fun helmStable$default (Lcom/citi/gradle/plugins/helm/dsl/HelmRepositoryHandler;Ljava/lang/String;ILjava/lang/Object;)V
 }
 
 public final class com/citi/gradle/plugins/helm/dsl/HelmRepositoryHandler$DefaultImpls {
@@ -733,7 +736,7 @@ public final class com/citi/gradle/plugins/helm/dsl/HelmRepositoryHandler$Defaul
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/dsl/Linting : com/citi/gradle/plugins/helm/command/ConfigurableHelmValueOptions {
-	public abstract fun configurations (Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectContainer;
+	public fun configurations (Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectContainer;
 	public abstract fun getConfigurations ()Lorg/gradle/api/NamedDomainObjectContainer;
 	public abstract fun getEnabled ()Lorg/gradle/api/provider/Property;
 	public abstract fun getStrict ()Lorg/gradle/api/provider/Property;
@@ -759,18 +762,11 @@ public abstract interface class com/citi/gradle/plugins/helm/dsl/credentials/Cer
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/dsl/credentials/CredentialsContainer {
-	public abstract fun credentials (Lgroovy/lang/Closure;)V
-	public abstract fun credentials (Ljava/lang/Class;Lgroovy/lang/Closure;)V
 	public abstract fun credentials (Ljava/lang/Class;Lorg/gradle/api/Action;)V
 	public abstract fun credentials (Lorg/gradle/api/Action;)V
 	public abstract fun getConfiguredCredentials ()Lorg/gradle/api/provider/Provider;
 	public abstract fun getCredentials ()Lcom/citi/gradle/plugins/helm/dsl/credentials/PasswordCredentials;
 	public abstract fun getCredentials (Ljava/lang/Class;)Lorg/gradle/api/credentials/Credentials;
-}
-
-public final class com/citi/gradle/plugins/helm/dsl/credentials/CredentialsContainer$DefaultImpls {
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/dsl/credentials/CredentialsContainer;Lgroovy/lang/Closure;)V
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/dsl/credentials/CredentialsContainer;Ljava/lang/Class;Lgroovy/lang/Closure;)V
 }
 
 public final class com/citi/gradle/plugins/helm/dsl/credentials/CredentialsContainerKt {
@@ -785,8 +781,6 @@ public abstract interface class com/citi/gradle/plugins/helm/dsl/credentials/Pas
 
 public final class com/citi/gradle/plugins/helm/dsl/credentials/internal/CredentialsContainerSupport : com/citi/gradle/plugins/helm/dsl/credentials/CredentialsContainer {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lcom/citi/gradle/plugins/helm/dsl/credentials/internal/CredentialsFactory;)V
-	public fun credentials (Lgroovy/lang/Closure;)V
-	public fun credentials (Ljava/lang/Class;Lgroovy/lang/Closure;)V
 	public fun credentials (Ljava/lang/Class;Lorg/gradle/api/Action;)V
 	public fun credentials (Lorg/gradle/api/Action;)V
 	public fun getConfiguredCredentials ()Lorg/gradle/api/provider/Provider;
@@ -827,9 +821,10 @@ public final class com/citi/gradle/plugins/helm/dsl/credentials/internal/Seriali
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/dsl/dependencies/ChartDependencyHandler {
-	public abstract fun add (Lcom/citi/gradle/plugins/helm/dsl/HelmChart;)V
+	public fun add (Lcom/citi/gradle/plugins/helm/dsl/HelmChart;)V
 	public abstract fun add (Ljava/lang/String;Ljava/lang/String;)V
-	public abstract fun add (Ljava/util/Map;)V
+	public fun add (Ljava/util/Map;)V
+	public static synthetic fun add$default (Lcom/citi/gradle/plugins/helm/dsl/dependencies/ChartDependencyHandler;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 }
 
 public final class com/citi/gradle/plugins/helm/dsl/dependencies/ChartDependencyHandler$DefaultImpls {

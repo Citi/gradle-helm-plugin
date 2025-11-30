@@ -16,6 +16,12 @@ jobs:
     strategy:
       fail-fast: true
     runs-on: ubuntu-latest
+
+    environment:
+      # This job must only run in Publishing environment. It is protected from the majority of runs, which prevents Gradle secrets leakage
+      name: Publishing
+      url: https://github.com/Gradle-Cloud/gradle-helm-plugin/settings/environments/10298625189/edit
+
     steps:
       # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle#using-the-gradle-starter-workflow
       - name: Harden the runner (Audit all outbound calls)

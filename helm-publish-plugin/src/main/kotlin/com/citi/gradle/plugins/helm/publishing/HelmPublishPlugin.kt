@@ -3,7 +3,6 @@ package com.citi.gradle.plugins.helm.publishing
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.internal.HasConvention
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.tasks.TaskDependency
 import org.gradle.internal.reflect.Instantiator
@@ -13,9 +12,9 @@ import com.citi.gradle.plugins.helm.command.HelmCommandsPlugin
 import com.citi.gradle.plugins.helm.dsl.HelmChart
 import com.citi.gradle.plugins.helm.dsl.internal.charts
 import com.citi.gradle.plugins.helm.dsl.internal.helm
-import com.citi.gradle.plugins.helm.publishing.dsl.HelmChartPublishConvention
+import com.citi.gradle.plugins.helm.publishing.dsl.HelmChartPublishExtension
 import com.citi.gradle.plugins.helm.publishing.dsl.HelmPublishingExtension
-import com.citi.gradle.plugins.helm.publishing.dsl.createHelmChartPublishConvention
+import com.citi.gradle.plugins.helm.publishing.dsl.createHelmChartPublishExtension
 import com.citi.gradle.plugins.helm.publishing.dsl.createHelmPublishingExtension
 import com.citi.gradle.plugins.helm.publishing.dsl.internal.repositories
 import com.citi.gradle.plugins.helm.publishing.rules.HelmPublishChartTaskRule
@@ -42,7 +41,7 @@ class HelmPublishPlugin
 
             val charts = project.helm.charts
             charts.all { chart ->
-                addChartPublishConvention(chart, project)
+                addChartPublishExtension(chart, project)
             }
 
             project.tasks.run {
@@ -71,13 +70,16 @@ class HelmPublishPlugin
 
 
     /**
-     * Adds a convention object to a chart for holding publishing-related properties.
+     * Adds an extension object to a chart for holding publishing-related properties.
      *
-     * @see HelmChartPublishConvention
+     * @see HelmChartPublishExtension
      */
-    private fun addChartPublishConvention(chart: HelmChart, project: Project) {
-        (chart as HasConvention).convention.plugins[HELM_CHART_PUBLISHING_CONVENTION_NAME] =
-            project.objects.createHelmChartPublishConvention()
+    private fun addChartPublishExtension(chart: HelmChart, project: Project) {
+        (chart as ExtensionAware).extensions.add(
+            HelmChartPublishExtension::class.java,
+            HELM_CHART_PUBLISHING_EXTENSION_NAME,
+            project.objects.createHelmChartPublishExtension()
+        )
     }
 
 

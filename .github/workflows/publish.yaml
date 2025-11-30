@@ -13,19 +13,18 @@ jobs:
     strategy:
       fail-fast: true
     runs-on: ubuntu-latest
+
+    environment:
+      # This job must only run in Publishing environment. It is protected from the majority of runs, which prevents Gradle secrets leakage
+      name: Publishing
+      url: https://github.com/Gradle-Cloud/gradle-helm-plugin/settings/environments/10298625189/edit
+
     steps:
       # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle#using-the-gradle-starter-workflow
       - name: Harden the runner (Audit all outbound calls)
         uses: step-security/harden-runner@4d991eb9b905ef189e4c376166672c3f2f230481 # v2.11.0
         with:
           egress-policy: audit
-
-      - name: Branch Check
-        if: github.ref != 'refs/heads/master'
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
-        with:
-          script: |
-            core.setFailed('This workflow must run on master branch only')
 
       # https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle#using-the-gradle-starter-workflow
       - name: Checkout Repo
@@ -42,11 +41,28 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@f9c9c575b8b21b6485636a91ffecd10e558c62f6 # v3.5.0
 
-      # https://github.com/marketplace/actions/gradle-build-action
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@ac2d340dc04d9e1113182899e983b5400c17cda1 # v3.5.0
+      # Optimize Gradle execution
+      # https://github.com/marketplace/actions/build-with-gradle
+      - name: Setup Gradle
         with:
-          gradle-home-cache-cleanup: true
-          # Secrets are uploaded via https://docs.github.com/en/actions/security-guides/encrypted-secrets
-          # Correct them on https://github.com/Citi/gradle-helm-plugin/settings/secrets/actions
-          arguments: publishPlugins -Pgradle.publish.key=${{ secrets.GRADLE_PUBLISH_KEY }} -Pgradle.publish.secret=${{ secrets.GRADLE_PUBLISH_SECRET }} --stacktrace
+          # disable cache for publication. We build from scratch here, so let's avoid having a theoretical vulnerability when cache entry was put in a declined PR, however reused by this build
+          cache-disabled: true
+        uses: gradle/actions/setup-gradle@v5
+
+      # Build and publish the project by simply running the command line
+      - name: Publish the project
+        # Several items:
+        # 1. Secrets are uploaded via https://docs.github.com/en/actions/security-guides/encrypted-secrets
+        #    Correct them on https://github.com/Gradle-Cloud/gradle-helm-plugin/settings/environments/10298625189/edit
+        #    Note!!!: these secrets must be in Publishing environment only
+        # 2. We physically publish from master branch only. From other branches we can validate workflow.
+        #    Please note - 'Publishing' environment is allowed to be used only in main branches, however that can be bypassed by admins (as expected) for publication testing
+        # 3. We disable Gradle daemon (it doesn't make any sense), print info logs and full stacktraces on CI
+        run: |
+          ./gradlew publishPlugins \
+          -Pgradle.publish.key=${{ secrets.GRADLE_PUBLISH_KEY }} \
+          -Pgradle.publish.secret=${{ secrets.GRADLE_PUBLISH_SECRET }} \
+          --stacktrace \
+          --info \
+          --no-daemon \
+          ${{ github.ref == 'refs/heads/master' && '--validate-only' || '' }}

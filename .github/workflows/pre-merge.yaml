@@ -3,8 +3,10 @@ name: Pre Merge Checks
 on:
   push:
     branches:
-      - master
+      - "master"      # run on master branch only - no need to start the job automatically otherwise
   pull_request:
+    branches:
+      - "**"      # run on PRs targeting ANY branch (assuming we check the Gradle wrapper first)
   workflow_dispatch:
 
 permissions:
@@ -29,20 +31,25 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
+      # Protect from putting custom jar as a gradle wrapper
+      # https://github.com/gradle/actions/tree/main/wrapper-validation
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v5
+
+      # setup JDK - depending on version selected
       # https://github.com/marketplace/actions/setup-java-jdk
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4.7.0
         with:
           java-version: ${{ matrix.jdk }}
           distribution: 'temurin'
 
-      # https://github.com/marketplace/actions/gradle-wrapper-validation
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@f9c9c575b8b21b6485636a91ffecd10e558c62f6 # v3.5.0
+      # Optimize Gradle execution
+      # https://github.com/marketplace/actions/build-with-gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
 
-      # https://github.com/marketplace/actions/gradle-build-action
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@ac2d340dc04d9e1113182899e983b5400c17cda1 # v3.5.0
-        with:
-          gradle-home-cache-cleanup: true
-          arguments: build --stacktrace --info
+      # Build the project by simply running the command line
+      # No need to use daemon (this is run once container), however we print detailed logs and stacktraces
+      - name: Assemble the project
+        run: ./gradlew build --stacktrace --info --no-daemon

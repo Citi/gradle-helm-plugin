@@ -6,6 +6,7 @@ plugins {
     id("maven-publish")
     alias(libs.plugins.detekt)
     alias(libs.plugins.binaryCompatibilityValidator)
+    id("kotlin-convention") // keep shared logic here
 }
 
 
@@ -21,7 +22,7 @@ dependencies {
 gradlePlugin {
     plugins {
         create("helmReleasesPlugin") {
-            id = "com.citi.helm-releases"
+            id = project.extra["plugin.prefix"].toString() + ".helm-releases"
             displayName = "Helm Releases"
             implementationClass = "com.citi.gradle.plugins.helm.release.HelmReleasesPlugin"
             description = "Extension for Gradle Helm Plugin. Supports charts installation/uninstallation."

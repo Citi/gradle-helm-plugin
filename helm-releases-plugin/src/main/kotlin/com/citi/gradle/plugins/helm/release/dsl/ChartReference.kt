@@ -81,7 +81,7 @@ internal class ConfigurationChartReference(
 
     override val chartLocation: String
         get() = project.configurations.getByName(configurationName)
-            .resolvedConfiguration
+            .incoming
             .files
             .first()
             .absolutePath

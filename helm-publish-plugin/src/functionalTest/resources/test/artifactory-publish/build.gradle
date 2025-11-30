@@ -1,6 +1,6 @@
 plugins {
-    id 'com.citi.helm'
-    id 'com.citi.helm-publish'
+    id 'io.github.gradle-cloud.helm'
+    id 'io.github.gradle-cloud.helm-publish'
 }
 
 helm {

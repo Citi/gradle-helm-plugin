@@ -5,7 +5,7 @@ unbrokenDome = "0.5.0"
 okhttp = "4.12.0"
 jackson = "2.18.2"
 # No need to keep the same Kotlin version with Gradle, at least because kotlin runtime is a transitive dependency of okhttp
-kotlin = "1.9.23"
+kotlin = "2.2.21"
 junit = "5.11.4"
 
 [libraries]
@@ -28,6 +28,7 @@ spekDsl = { module = "org.spekframework.spek2:spek-dsl-jvm", version.ref = "spek
 spekRunner = { module = "org.spekframework.spek2:spek-runner-junit5", version.ref = "spek" }
 junitEngine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
 junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junitPlatform = { module = 'org.junit.platform:junit-platform-launcher' }
 coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.9.0" }
 
 

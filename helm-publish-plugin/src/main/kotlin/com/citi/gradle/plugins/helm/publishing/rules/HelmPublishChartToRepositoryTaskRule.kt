@@ -4,7 +4,7 @@ import org.gradle.api.NamedDomainObjectCollection
 import org.gradle.api.tasks.TaskContainer
 import com.citi.gradle.plugins.helm.dsl.HelmChart
 import com.citi.gradle.plugins.helm.publishing.dsl.HelmPublishingRepository
-import com.citi.gradle.plugins.helm.publishing.dsl.publishConvention
+import com.citi.gradle.plugins.helm.publishing.dsl.publishExtension
 import com.citi.gradle.plugins.helm.publishing.tasks.HelmPublishChart
 import com.citi.gradle.plugins.helm.rules.packagedArtifactConfigurationName
 import org.unbrokendome.gradle.pluginutils.rules.AbstractTaskRule2
@@ -41,7 +41,7 @@ internal class HelmPublishChartToRepositoryTaskRule(
 
         description = "Publishes the ${chart.name} chart to the ${repository.name} repository."
 
-        onlyIf { chart.publishConvention.publish.get() }
+        onlyIf { chart.publishExtension.publish.get() }
 
         chartName.set(chart.chartName)
         chartVersion.set(chart.chartVersion)

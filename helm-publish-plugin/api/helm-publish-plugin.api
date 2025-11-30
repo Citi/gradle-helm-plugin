@@ -5,24 +5,14 @@ public final class com/citi/gradle/plugins/helm/publishing/HelmPublishPlugin : o
 }
 
 public final class com/citi/gradle/plugins/helm/publishing/HelmPublishPluginConstantsKt {
-	public static final field HELM_CHART_PUBLISHING_CONVENTION_NAME Ljava/lang/String;
+	public static final field HELM_CHART_PUBLISHING_EXTENSION_NAME Ljava/lang/String;
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository : com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository {
 }
 
-public final class com/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository$DefaultImpls {
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository;Lgroovy/lang/Closure;)V
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository;Ljava/lang/Class;Lgroovy/lang/Closure;)V
-}
-
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/ChartMuseumHelmPublishingRepository : com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository {
 	public abstract fun getTenantIds ()Lorg/gradle/api/provider/ListProperty;
-}
-
-public final class com/citi/gradle/plugins/helm/publishing/dsl/ChartMuseumHelmPublishingRepository$DefaultImpls {
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/ChartMuseumHelmPublishingRepository;Lgroovy/lang/Closure;)V
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/ChartMuseumHelmPublishingRepository;Ljava/lang/Class;Lgroovy/lang/Closure;)V
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/CustomHelmPublishingRepository : com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository {
@@ -31,56 +21,37 @@ public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/Cust
 	public abstract fun getUploadPath ()Lorg/gradle/api/provider/Property;
 }
 
-public final class com/citi/gradle/plugins/helm/publishing/dsl/CustomHelmPublishingRepository$DefaultImpls {
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/CustomHelmPublishingRepository;Lgroovy/lang/Closure;)V
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/CustomHelmPublishingRepository;Ljava/lang/Class;Lgroovy/lang/Closure;)V
-}
-
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/GitlabHelmPublishingRepository : com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository {
 	public abstract fun getProjectId ()Lorg/gradle/api/provider/Property;
-}
-
-public final class com/citi/gradle/plugins/helm/publishing/dsl/GitlabHelmPublishingRepository$DefaultImpls {
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/GitlabHelmPublishingRepository;Lgroovy/lang/Closure;)V
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/GitlabHelmPublishingRepository;Ljava/lang/Class;Lgroovy/lang/Closure;)V
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/HarborHelmPublishingRepository : com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository {
 	public abstract fun getProjectName ()Lorg/gradle/api/provider/Property;
 }
 
-public final class com/citi/gradle/plugins/helm/publishing/dsl/HarborHelmPublishingRepository$DefaultImpls {
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/HarborHelmPublishingRepository;Lgroovy/lang/Closure;)V
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/HarborHelmPublishingRepository;Ljava/lang/Class;Lgroovy/lang/Closure;)V
-}
-
-public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/HelmChartPublishConvention {
+public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/HelmChartPublishExtension {
 	public abstract fun getPublish ()Lorg/gradle/api/provider/Property;
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingExtension {
+	public abstract fun getPublish ()Lorg/gradle/api/provider/Property;
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository : com/citi/gradle/plugins/helm/dsl/credentials/CredentialsContainer, org/gradle/api/Named {
 	public abstract fun getUrl ()Lorg/gradle/api/provider/Property;
 }
 
-public final class com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository$DefaultImpls {
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository;Lgroovy/lang/Closure;)V
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository;Ljava/lang/Class;Lgroovy/lang/Closure;)V
-}
-
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepositoryContainer : org/gradle/api/PolymorphicDomainObjectContainer {
-	public abstract fun artifactory (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository;
-	public abstract fun artifactory (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository;
-	public abstract fun chartMuseum (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/ChartMuseumHelmPublishingRepository;
-	public abstract fun chartMuseum (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/ChartMuseumHelmPublishingRepository;
-	public abstract fun gitlab (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/GitlabHelmPublishingRepository;
-	public abstract fun gitlab (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/GitlabHelmPublishingRepository;
-	public abstract fun harbor (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/HarborHelmPublishingRepository;
-	public abstract fun harbor (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/HarborHelmPublishingRepository;
-	public abstract fun nexus (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/NexusHelmPublishingRepository;
-	public abstract fun nexus (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/NexusHelmPublishingRepository;
+	public fun artifactory (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository;
+	public fun artifactory (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/ArtifactoryHelmPublishingRepository;
+	public fun chartMuseum (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/ChartMuseumHelmPublishingRepository;
+	public fun chartMuseum (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/ChartMuseumHelmPublishingRepository;
+	public fun gitlab (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/GitlabHelmPublishingRepository;
+	public fun gitlab (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/GitlabHelmPublishingRepository;
+	public fun harbor (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/HarborHelmPublishingRepository;
+	public fun harbor (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/HarborHelmPublishingRepository;
+	public fun nexus (Ljava/lang/String;Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/NexusHelmPublishingRepository;
+	public fun nexus (Lorg/gradle/api/Action;)Lcom/citi/gradle/plugins/helm/publishing/dsl/NexusHelmPublishingRepository;
 }
 
 public final class com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepositoryContainer$DefaultImpls {
@@ -99,11 +70,6 @@ public final class com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRep
 public abstract interface class com/citi/gradle/plugins/helm/publishing/dsl/NexusHelmPublishingRepository : com/citi/gradle/plugins/helm/publishing/dsl/HelmPublishingRepository {
 	public abstract fun getApiVersion ()Lorg/gradle/api/provider/Property;
 	public abstract fun getRepository ()Lorg/gradle/api/provider/Property;
-}
-
-public final class com/citi/gradle/plugins/helm/publishing/dsl/NexusHelmPublishingRepository$DefaultImpls {
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/NexusHelmPublishingRepository;Lgroovy/lang/Closure;)V
-	public static fun credentials (Lcom/citi/gradle/plugins/helm/publishing/dsl/NexusHelmPublishingRepository;Ljava/lang/Class;Lgroovy/lang/Closure;)V
 }
 
 public final class com/citi/gradle/plugins/helm/publishing/rules/HelmPublishChartTaskRuleKt {

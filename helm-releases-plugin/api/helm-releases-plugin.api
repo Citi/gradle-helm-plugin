@@ -8,7 +8,7 @@ public final class com/citi/gradle/plugins/helm/release/HelmReleasesPlugin : org
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/release/dsl/ChartReference : org/gradle/api/Buildable {
-	public abstract fun getBuildDependencies ()Lorg/gradle/api/tasks/TaskDependency;
+	public fun getBuildDependencies ()Lorg/gradle/api/tasks/TaskDependency;
 	public abstract fun getChartLocation ()Ljava/lang/String;
 }
 
@@ -23,17 +23,17 @@ public abstract interface class com/citi/gradle/plugins/helm/release/dsl/Configu
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/release/dsl/HelmRelease : com/citi/gradle/plugins/helm/command/ConfigurableHelmInstallFromRepositoryOptions, com/citi/gradle/plugins/helm/release/dsl/HelmReleaseProperties, org/gradle/api/Named {
-	public abstract fun forAnyTarget (Lorg/gradle/api/Action;)V
-	public abstract fun forTarget (Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public fun forAnyTarget (Lorg/gradle/api/Action;)V
+	public fun forTarget (Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public abstract fun forTargets (Ljava/lang/Iterable;Lorg/gradle/api/Action;)V
-	public abstract fun forTargets ([Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public fun forTargets ([Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public abstract fun getTags ()Ljava/util/Set;
 	public abstract fun getValuesDirs ()Lorg/gradle/api/provider/ListProperty;
-	public abstract fun tags (Ljava/lang/Iterable;)V
-	public abstract fun tags ([Ljava/lang/String;)V
-	public abstract fun valuesDir (Ljava/lang/Object;)V
+	public fun tags (Ljava/lang/Iterable;)V
+	public fun tags ([Ljava/lang/String;)V
+	public fun valuesDir (Ljava/lang/Object;)V
 	public abstract fun valuesDirs (Ljava/lang/Iterable;)V
-	public abstract fun valuesDirs ([Ljava/lang/Object;)V
+	public fun valuesDirs ([Ljava/lang/Object;)V
 }
 
 public final class com/citi/gradle/plugins/helm/release/dsl/HelmRelease$DefaultImpls {
@@ -72,11 +72,12 @@ public final class com/citi/gradle/plugins/helm/release/dsl/HelmRelease$TargetSp
 }
 
 public abstract interface class com/citi/gradle/plugins/helm/release/dsl/HelmReleaseProperties : com/citi/gradle/plugins/helm/command/ConfigurableHelmInstallFromRepositoryOptions, com/citi/gradle/plugins/helm/command/ConfigurableHelmValueOptions, org/gradle/api/Named {
-	public abstract fun chart (Ljava/lang/String;)Lcom/citi/gradle/plugins/helm/release/dsl/ChartReference;
+	public fun chart (Ljava/lang/String;)Lcom/citi/gradle/plugins/helm/release/dsl/ChartReference;
 	public abstract fun chart (Ljava/lang/String;Ljava/lang/String;)Lcom/citi/gradle/plugins/helm/release/dsl/ChartReference;
-	public abstract fun chart (Ljava/util/Map;)Lcom/citi/gradle/plugins/helm/release/dsl/ChartReference;
-	public abstract fun dependsOn (Ljava/lang/String;)V
-	public abstract fun dependsOn ([Ljava/lang/String;)V
+	public fun chart (Ljava/util/Map;)Lcom/citi/gradle/plugins/helm/release/dsl/ChartReference;
+	public static synthetic fun chart$default (Lcom/citi/gradle/plugins/helm/release/dsl/HelmReleaseProperties;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/citi/gradle/plugins/helm/release/dsl/ChartReference;
+	public fun dependsOn (Ljava/lang/String;)V
+	public fun dependsOn ([Ljava/lang/String;)V
 	public abstract fun from (Ljava/lang/Object;)V
 	public abstract fun getChart ()Lorg/gradle/api/provider/Property;
 	public abstract fun getDependsOn ()Lorg/gradle/api/provider/SetProperty;
@@ -88,11 +89,11 @@ public abstract interface class com/citi/gradle/plugins/helm/release/dsl/HelmRel
 	public abstract fun getReleaseName ()Lorg/gradle/api/provider/Property;
 	public abstract fun getReplace ()Lorg/gradle/api/provider/Property;
 	public abstract fun getTest ()Lcom/citi/gradle/plugins/helm/release/dsl/ConfigurableHelmReleaseTestOptions;
-	public abstract fun installDependsOn (Ljava/lang/Iterable;)V
-	public abstract fun installDependsOn ([Ljava/lang/Object;)V
-	public abstract fun mustInstallAfter ([Ljava/lang/String;)V
-	public abstract fun mustUninstallAfter ([Ljava/lang/String;)V
-	public abstract fun test (Lorg/gradle/api/Action;)V
+	public fun installDependsOn (Ljava/lang/Iterable;)V
+	public fun installDependsOn ([Ljava/lang/Object;)V
+	public fun mustInstallAfter ([Ljava/lang/String;)V
+	public fun mustUninstallAfter ([Ljava/lang/String;)V
+	public fun test (Lorg/gradle/api/Action;)V
 }
 
 public final class com/citi/gradle/plugins/helm/release/dsl/HelmReleaseProperties$DefaultImpls {
@@ -115,7 +116,7 @@ public abstract interface class com/citi/gradle/plugins/helm/release/dsl/HelmRel
 	public abstract fun getValueFiles ()Lorg/gradle/api/file/ConfigurableFileCollection;
 	public abstract fun getValues ()Lorg/gradle/api/provider/MapProperty;
 	public abstract fun setSelectTags (Ljava/lang/String;)V
-	public abstract fun test (Lorg/gradle/api/Action;)V
+	public fun test (Lorg/gradle/api/Action;)V
 }
 
 public final class com/citi/gradle/plugins/helm/release/dsl/HelmReleaseTarget$DefaultImpls {

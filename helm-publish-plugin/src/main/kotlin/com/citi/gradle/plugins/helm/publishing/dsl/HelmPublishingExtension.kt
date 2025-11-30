@@ -4,17 +4,24 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.internal.reflect.Instantiator
 import com.citi.gradle.plugins.helm.publishing.HELM_PUBLISHING_REPOSITORIES_EXTENSION_NAME
+import org.gradle.api.provider.Property
+import org.unbrokendome.gradle.pluginutils.property
 import javax.inject.Inject
 
 
 /**
  * Configures the publishing of Helm charts to remote repositories.
  */
-interface HelmPublishingExtension
+interface HelmPublishingExtension {
+    val publish: Property<Boolean>
+}
 
 
 private open class DefaultHelmPublishingExtension
-@Inject constructor() : HelmPublishingExtension
+@Inject constructor(objectFactory: ObjectFactory) : HelmPublishingExtension {
+    override val publish: Property<Boolean> =
+        objectFactory.property<Boolean>().convention(true)
+}
 
 
 /**

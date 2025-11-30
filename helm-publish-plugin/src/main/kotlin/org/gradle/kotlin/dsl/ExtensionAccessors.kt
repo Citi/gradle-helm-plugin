@@ -3,7 +3,7 @@ package org.gradle.kotlin.dsl
 
 import org.gradle.api.provider.Property
 import com.citi.gradle.plugins.helm.dsl.HelmChart
-import com.citi.gradle.plugins.helm.publishing.dsl.publishConvention
+import com.citi.gradle.plugins.helm.publishing.dsl.publishExtension
 
 
 /**
@@ -12,4 +12,4 @@ import com.citi.gradle.plugins.helm.publishing.dsl.publishConvention
  * Defaults to `true`.
  */
 val HelmChart.publish: Property<Boolean>
-    get() = publishConvention.publish
+    get() = publishExtension.publish

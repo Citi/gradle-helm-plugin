@@ -14,9 +14,9 @@ internal const val HELM_PUBLISHING_REPOSITORIES_EXTENSION_NAME = "repositories"
 
 
 /**
- * The name of the publishing convention object installed on each chart.
+ * The name of the publishing extension object installed on each chart.
  *
- * Note that since convention properties are accessible directly on the object, the name of the convention
+ * Note that since extension properties are accessible directly on the object, the name of the extension
  * does not really matter except for uniqueness.
  */
-const val HELM_CHART_PUBLISHING_CONVENTION_NAME = "publishing"
+const val HELM_CHART_PUBLISHING_EXTENSION_NAME = "publishing"

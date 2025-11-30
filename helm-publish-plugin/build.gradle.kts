@@ -6,6 +6,7 @@ plugins {
     id("maven-publish")
     alias(libs.plugins.detekt)
     alias(libs.plugins.binaryCompatibilityValidator)
+    id("kotlin-convention") // keep shared logic here
 }
 
 val functionalTest by sourceSets.creating
@@ -29,6 +30,7 @@ dependencies {
 
     "functionalTestImplementation"(project(":plugin-test-utils"))
     "functionalTestImplementation"(libs.okHttpMockWebServer)
+    "functionalTestRuntimeOnly"(libs.junitPlatform)
 }
 
 
@@ -36,7 +38,7 @@ gradlePlugin {
     testSourceSets(functionalTest)
     plugins {
         create("helmPublishPlugin") {
-            id = "com.citi.helm-publish"
+            id = project.extra["plugin.prefix"].toString() + ".helm-publish"
             displayName = "Helm Publish"
             implementationClass = "com.citi.gradle.plugins.helm.publishing.HelmPublishPlugin"
             description = "Extension for Gradle Helm Plugin. Allows helm chart publishing. Helm doesn't have this feature, so different publications are used for different helm repository providers"

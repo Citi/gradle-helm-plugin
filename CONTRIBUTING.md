@@ -2,7 +2,8 @@
 
 ## Preconditions
 
-* Java 8 or newer
+Java 17 (not older, not newer: old versions aren't compatible with Gradle, new versions might have an API unavailable
+with plugin baseline)
 
 ## Running local builds
 
@@ -38,7 +39,9 @@ inherit classpath from plugin, which might be risky for functional tests.
 Therefore, tests covering entire plugin (plus potential different gradle versions verification) are separated to
 different source set and to different task. Please run `./gradlew functionalTest` task for that purpose.
 
-Functional tests download distribution archives from `https://services.gradle.org/distributions`. If you'd like to use another web server (for example, corporate artifacts provider) - please configure gradle property `com.citi.gradle.helm.plugin.distribution.url.prefix` in `~/.gradle/gradle.properties`
+Functional tests download distribution archives from `https://services.gradle.org/distributions`. If you'd like to use
+another web server (for example, corporate artifacts provider) - please configure gradle property
+`com.citi.gradle.helm.plugin.distribution.url.prefix` in `~/.gradle/gradle.properties`
 
 ### Helm executable replacement
 
